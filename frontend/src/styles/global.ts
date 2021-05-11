@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default createGlobalStyle`
 
@@ -32,6 +33,7 @@ body, input, button {
 h1, h2, h3, h4, h6, strong {
   font-family: Montserrat;
   font-weight: 500;
+  font-size: 16px;
 }
 button {
   cursor: pointer;

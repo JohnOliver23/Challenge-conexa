@@ -3,7 +3,7 @@ import { shade } from 'polished';
 
 export const Container = styled.button`
   background: var(--color-blue);
-  font-size: 16px;
+  font-size: 14px;
   height: 40px;
   border-radius: 10px;
   border: 0;
