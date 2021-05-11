@@ -8,10 +8,16 @@ import AppProvider from './hooks';
 
 import Routes from './routes';
 
+import { ToastContainer } from 'react-toastify';
+
+import Header from './components/Header';
+
 const App: React.FC = () => (
   <Router>
     <AppProvider>
+      <Header />
       <Routes />
+      <ToastContainer />
     </AppProvider>
     <GlobalStyle />
   </Router>

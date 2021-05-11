@@ -1,10 +1,9 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
 import api from '../services/api';
+import { toast } from 'react-toastify';
 
 interface User {
-  id: string;
   name: string;
-  avatar_url: string;
 }
 interface AuthState {
   token: string;
@@ -28,8 +27,8 @@ export const AuthContext = createContext<AuthContextData>(
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@Gobarber:token');
-    const user = localStorage.getItem('@Gobarber:user');
+    const token = localStorage.getItem('@Conexa:token');
+    const user = localStorage.getItem('@Conexa:user');
 
     if (token && user) {
       return { token, user: JSON.parse(user) };
@@ -37,20 +36,38 @@ export const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthState;
   });
   const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post('sessions', {
-      email,
-      password,
-    });
-    const { token, user } = response.data;
-    localStorage.setItem('@Gobarber:token', token);
-    localStorage.setItem('@Gobarber:user', JSON.stringify(user));
-
-    setData({ token, user });
+    await api
+      .post('/login', {
+        email,
+        password,
+      })
+      .then(response => {
+        const { token, name } = response.data;
+        const user = {
+          name,
+        };
+        localStorage.setItem('@Conexa:token', token);
+        localStorage.setItem('@Conexa:user', JSON.stringify(user));
+        setData({ token, user });
+        finishRequest(true);
+      })
+      .catch(err => {
+        console.log(err.response.data);
+        finishRequest(false);
+      });
   }, []);
 
+  const finishRequest = (status: boolean) => {
+    if (status) {
+      toast.success('Usuário logado com sucesso!');
+    } else {
+      toast.error('Usuário ou senha inválidos');
+    }
+  };
+
   const signOut = useCallback(() => {
-    localStorage.removeItem('@Gobarber:token');
-    localStorage.removeItem('@Gobarber:user');
+    localStorage.removeItem('@Conexa:token');
+    localStorage.removeItem('@Conexa:user');
     setData({} as AuthState);
   }, []);
 

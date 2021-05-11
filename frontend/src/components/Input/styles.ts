@@ -10,8 +10,8 @@ interface LabelProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  background: #fff;
-  border-bottom: 2px solid #dad2d0;
+  background: var(--color-white);
+  border-bottom: 2px solid var(--color-gray-light);
   padding-bottom: 8px;
   padding-right: 8px;
   width: 100%;
@@ -25,18 +25,18 @@ export const Container = styled.div<ContainerProps>`
   ${props =>
     props.isErrored &&
     css`
-      border-color: #c53030;
+      border-color: var(--color-red);
     `}
   ${props =>
     props.isFocused &&
     css`
-      color: #8296e5;
-      border-color: #8296e5;
+      color: var(--color-blue-dark);
+      border-color: var(--color-blue-dark);
     `}
   ${props =>
     props.isFilled &&
     css`
-      color: #8296e5;
+      color: var(--color-blue-dark);
     `}
   input {
     flex: 1;
@@ -49,7 +49,7 @@ export const Container = styled.div<ContainerProps>`
       ${props =>
         props.isErrored &&
         css`
-          color: #c53030;
+          color: var(--color-red);
         `}
     }
   }
@@ -66,12 +66,12 @@ export const Label = styled.p<LabelProps>`
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
-  color: #575453;
+  color: var(--color-gray-dark);
   margin-bottom: 2px;
   ${props =>
     props.isErrored &&
     css`
-      color: #c53030;
+      color: var(--color-red);
     `}
 `;
 export const Error = styled(Tooltip)`
@@ -81,10 +81,10 @@ export const Error = styled(Tooltip)`
     margin: 0;
   }
   span {
-    background: #c53030;
-    color: #fff;
+    background: var(--color-red);
+    color: var(--color-white);
     &::before {
-      border-color: #c53030 transparent;
+      border-color: var(--color-red) transparent;
     }
   }
 `;

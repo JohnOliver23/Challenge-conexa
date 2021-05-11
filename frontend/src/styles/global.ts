@@ -1,6 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default createGlobalStyle`
+
+:root {
+        --font-primary: 'Nunito', sans-serif;
+        --font-secondary: 'Montserrat', sans-serif;
+        --color-blue: #2E50D4;
+        --color-blue-dark: #1C307F;
+        --color-white: #FFFFFB;
+        --color-gray-light: #DAD2D0;
+        --color-gray-dark: #575453;
+        --color-red: #c53030;
+    }
 * {
   margin: 0;
   padding:0;
@@ -11,6 +23,7 @@ body {
   background: #fff;
   color: #333;
   -webkit-font-smoothing: antialiased;
+  margin-top: 4rem;
 }
 body, input, button {
   font-family: 'Nunito', serif;

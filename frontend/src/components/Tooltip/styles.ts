@@ -4,7 +4,7 @@ export const Container = styled.section`
   position: relative;
   span {
     width: 160px;
-    background: #ff9000;
+    background: var(--color-red);
     padding: 8px;
     border-radius: 4px;
     font-size: 14px;
@@ -20,7 +20,7 @@ export const Container = styled.section`
     &::before {
       content: '';
       border-style: solid;
-      border-color: #ff9000 transparent;
+      border-color: var(--color-red) transparent;
       border-width: 6px 6px 0 6px;
       bottom: 20px;
       top: 100%;

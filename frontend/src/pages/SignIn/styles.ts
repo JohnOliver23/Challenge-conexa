@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import LoginDraw from '../../assets/img/LoginDraw.png';
 
 export const Container = styled.div`
-  height: 100vh;
+  height: calc(100vh - 4rem);
   display: flex;
   align-items: stretch;
   h1 {
@@ -12,7 +12,7 @@ export const Container = styled.div`
     line-height: 39px;
     text-align: center;
     letter-spacing: -1.5px;
-    color: #210080;
+    color: var(--color-blue-dark);
   }
 `;
 const appearFromLeft = keyframes`
