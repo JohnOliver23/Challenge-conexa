@@ -132,6 +132,8 @@ const ModalAppointmentSchedule: React.FC<ForgotPassswordModalProps> = ({
             <Row>
               <Col md="6">
                 <KeyboardDatePicker
+                  error={!!formik.errors.date}
+                  required
                   invalidDateMessage="Data inválida"
                   name="date"
                   margin="normal"
@@ -147,6 +149,8 @@ const ModalAppointmentSchedule: React.FC<ForgotPassswordModalProps> = ({
               </Col>
               <Col md="6">
                 <KeyboardTimePicker
+                  error={!!formik.errors.hour}
+                  required
                   invalidDateMessage="Hora inválida"
                   name="hour"
                   margin="normal"
@@ -163,7 +167,7 @@ const ModalAppointmentSchedule: React.FC<ForgotPassswordModalProps> = ({
             <Row>
               <Col md="6">
                 <Select
-                  label="Paciente"
+                  label="Paciente *"
                   name="patient"
                   value={formik.values.patient}
                   onChange={formik.handleChange}

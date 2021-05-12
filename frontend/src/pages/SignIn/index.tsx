@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../../components/Button';
 import { Container, Content, Background, AnimationContainer } from './styles';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Input from '../../components/Input';
 import { useAuth } from '../../hooks/auth';
+import { GoEye, GoEyeClosed } from 'react-icons/go';
+import { FiHelpCircle } from 'react-icons/fi';
+
 const SignIn: React.FC = () => {
+  const [passwordShow, setPasswordShow] = useState(false);
+
   const { signIn } = useAuth();
   //Yup
   const userSchema = Yup.object({
@@ -54,13 +59,27 @@ const SignIn: React.FC = () => {
             <Input
               label="Senha"
               name="password"
-              type="password"
+              type={passwordShow ? 'text' : 'password'}
               placeholder="Digite sua senha"
               onChange={formik.handleChange}
               error={
                 formik.errors.password && formik.touched.password
                   ? formik.errors.password
                   : ''
+              }
+              iconLabel={<FiHelpCircle size="15" color="#999392" />}
+              icon={
+                passwordShow ? (
+                  <GoEye
+                    onClick={e => setPasswordShow(!passwordShow)}
+                    size={20}
+                  />
+                ) : (
+                  <GoEyeClosed
+                    size={20}
+                    onClick={e => setPasswordShow(!passwordShow)}
+                  />
+                )
               }
               value={formik.values.password}
             />

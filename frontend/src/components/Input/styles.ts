@@ -4,6 +4,7 @@ interface ContainerProps {
   isFocused: boolean;
   isFilled: boolean;
   isErrored: boolean;
+  isIcon: boolean;
 }
 interface LabelProps {
   isErrored: boolean;
@@ -13,7 +14,7 @@ export const Container = styled.div<ContainerProps>`
   background: var(--color-white);
   border-bottom: 2px solid var(--color-gray-light);
   padding-bottom: 8px;
-  padding-right: 8px;
+  padding-right: 28px;
   width: 100%;
   color: #999392;
   display: flex;
@@ -23,9 +24,17 @@ export const Container = styled.div<ContainerProps>`
     margin-top: 8px;
   }
   ${props =>
+    props.isIcon &&
+    css`
+      padding-right: 8px;
+    `}
+  ${props =>
     props.isErrored &&
     css`
       border-color: var(--color-red);
+      svg {
+        color: var(--color-red);
+      }
     `}
   ${props =>
     props.isFocused &&
@@ -58,6 +67,9 @@ export const Container = styled.div<ContainerProps>`
     display: flex;
     align-items: flex-end;
   }
+  svg {
+    cursor: pointer;
+  }
 `;
 
 export const Label = styled.p<LabelProps>`
@@ -72,13 +84,22 @@ export const Label = styled.p<LabelProps>`
     props.isErrored &&
     css`
       color: var(--color-red);
+      svg {
+        stroke: var(--color-red);
+      }
     `}
+  svg {
+    margin-top: -2px;
+    margin-left: 3px;
+  }
 `;
 export const Error = styled(Tooltip)`
   height: 20px;
   margin-left: 1rem;
   svg {
     margin: 0;
+    margin-top: -3px;
+    margin-right: 5px;
   }
   span {
     background: var(--color-red);

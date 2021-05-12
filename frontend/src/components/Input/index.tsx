@@ -4,7 +4,6 @@ import React, {
   useState,
   useCallback,
 } from 'react';
-import { IconBaseProps } from 'react-icons';
 import { FiAlertCircle } from 'react-icons/fi';
 
 import { Container, Error, Label } from './styles';
@@ -12,8 +11,9 @@ import { Container, Error, Label } from './styles';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   name: string;
-  icon?: React.ComponentType<IconBaseProps>;
+  icon?: React.ReactFragment;
   label: string;
+  iconLabel?: React.ReactFragment;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -21,6 +21,7 @@ const Input: React.FC<InputProps> = ({
   icon: Icon,
   error,
   label,
+  iconLabel,
   ...rest
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -37,10 +38,16 @@ const Input: React.FC<InputProps> = ({
   }, []);
 
   return (
-    <Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
-      <Label isErrored={!!error}>{label}</Label>
+    <Container
+      isIcon={!!Icon}
+      isErrored={!!error}
+      isFilled={isFilled}
+      isFocused={isFocused}
+    >
+      <Label isErrored={!!error}>
+        {label} {iconLabel && iconLabel}
+      </Label>
       <section className="container-input">
-        {Icon && <Icon size={20} />}
         <input
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
@@ -53,6 +60,7 @@ const Input: React.FC<InputProps> = ({
             <FiAlertCircle color="#f44336" size={20} />
           </Error>
         )}
+        {Icon && Icon}
       </section>
     </Container>
   );
