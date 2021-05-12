@@ -1,76 +1,72 @@
-# Bem vindo ao desafio Front-end Conexa!
+# CONEXA SAÚDE
 
-### O Caso
+This is a test for a Front-End developer position at Conexa.
 
-Precisamos construir um front onde nossos médicos de plantão consigam ver as consultas agendadas e agendar novas consultas.
+## Run the Backend
+1. git clone https://github.com/JohnOliver23/Challenge-conexa.git
+2. cd Challenge-conexa/
+3. cd backend
+4. yarn install
+5. yarn start
 
-<div width="100%" >
-    <img src="/images/login_320x568px.png" width="40%"  />
-    <img src="/images/home_320x568px.png" width="40%" align="right"/>
-</div>
+## Run the Frontend
+1. cd frontend
+2. yarn install
+3. yarn start
 
-Será necessário ter uma tela de login para que médicos da clínica consigam acessar a aplicação, utilizando email e senha ([credenciais para teste](#credenciais-para-teste)).
+# Pages
 
-A response do login será um token de validação e o nome do médico.
+### Login: 
 
-O médico poderá listar e cadastrar consultas.
+- The login page contains a form where the user will be able to authenticate
 
-No projeto há um diretório com o backend com os dados mockados. Basta, dentro do diretório /backend, rodar:
+#### Desktop
+![Desktop](https://github.com/JohnOliver23/Challenge-conexa/blob/main/images/loginDesk.png?raw=true)
 
-```bash
-yarn
-```
 
-...para instalar as dependências, e logo após rodar:
+#### Mobile
+![Mobile](https://github.com/JohnOliver23/Challenge-conexa/blob/main/images/loginMob.png?raw=true)
 
-```bash
-yarn start
-```
+### Home: 
 
-...para rodar o servidor em http://localhost:3333.
+- The home page contains a list of scheduled appointments
+- The user will be able to view the modal of scheduling consultation by clicking on the button in the footer
 
-### Recursos
+#### Desktop
+![Desktop](https://github.com/JohnOliver23/Challenge-conexa/blob/main/images/homeDesk.png?raw=true)
 
-Endpoints:
 
-- Fazer Login => POST http://localhost:3333/login
-- Buscar Consultas => GET http://localhost:3333/consultations?_expand=patient
-- Nova Consulta => POST http://localhost:3333/consultations
-  - Deve usar o token fornecido pelo login
-  - body: {
-    "patientId": 1,
-    "date": "Fri Feb 05 2021 10:20:00 GMT-0300 (Brasilia Standard Time)"
-    }
+#### Mobile
+![Mobile](https://github.com/JohnOliver23/Challenge-conexa/blob/main/images/homeMob.png?raw=true)
 
-### O que você deve fazer
+### Appointment Schedule: 
 
-- Fazer o Fork do repositório, criar uma nova branch e abrir um merge request para a master do nosso repositório quando concluir
-- Desenvolver essa aplicação usando ReactJs
-- Atender os requisitos descritos no Caso
+- The appointment schedule consists of a modal where the user can schedule a new appointment
 
-### O que será avaliado
+#### Desktop
+![Desktop](https://github.com/JohnOliver23/Challenge-conexa/blob/main/images/modalDesk.png?raw=true)
 
-- Se os requisitos foram atendidos
-- Conhecimento de git
-- Documentação
-- Clareza e qualidade do código
-- Estrutura da aplicação
-- Bom uso das features da linguagem
-- Aplicação bem testada
-- Fidelidade ao layout
-- O uso de typescript nos deixará mais feliz :)
 
-#### Não se limite aos requisitos básicos. Dê o seu melhor! ;)
+#### Mobile
+![Mobile](https://github.com/JohnOliver23/Challenge-conexa/blob/main/images/modalMob.png?raw=true)
 
-Em caso de dúvidas sobre o desafio, entre em contato.
 
-### Layout
+## Technologies:
+- Typescript
+- HTML
+- CSS
 
-[Figma](https://www.figma.com/file/eaD2LIOcswFJO2SblVyIeq/Desafio-frontend-Conexa?node-id=1%3A446)
+## Framework
+### React FC with hooks
+- useState, useReducer and useContext for state control
+- useEffect for lifecicle control
 
-Obs.: A funcionalidade de agendar uma nova consulta deverá ser um modal (Não presente no layout) com os campos necessários, incluindo Datepicker; seguindo mesma linha do layout fornecido.
-
-### Credenciais para teste
-
-email: gandalf@mail.com
-senha: 123456
+## Libraries
+- Styled components
+- Formik
+- Yup
+- React Router DOM
+- React icons
+- react-bootstrap
+- Material-UI
+- Date-fns
