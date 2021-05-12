@@ -25,7 +25,7 @@ This is a test for a Front-End developer position at Conexa.
 
 
 #### Mobile
-![Mobile](https://github.com/JohnOliver23/Challenge-conexa/blob/main/images/loginMob.png?raw=true)
+![Mobile](https://github.com/JohnOliver23/Challenge-conexa/blob/main/images/LoginMob.png?raw=true)
 
 ### Home: 
 
