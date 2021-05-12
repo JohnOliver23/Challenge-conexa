@@ -1,6 +1,21 @@
-import React, { createContext, useCallback, useState, useContext } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useState,
+  useContext,
+  useReducer,
+  Dispatch,
+} from 'react';
+
 import api from '../services/api';
+
 import { toast } from 'react-toastify';
+
+import { genericReducer } from '../util/reducer';
+
+import { Consultation } from '../util/types';
+
+import { Action } from '../util/types';
 
 interface User {
   name: string;
@@ -19,6 +34,8 @@ interface AuthContextData {
   user: User;
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
+  consultations: Consultation[];
+  setConsultations: Dispatch<Action>;
 }
 
 export const AuthContext = createContext<AuthContextData>(
@@ -26,6 +43,7 @@ export const AuthContext = createContext<AuthContextData>(
 );
 
 export const AuthProvider: React.FC = ({ children }) => {
+  const [consultations, setConsultations] = useReducer(genericReducer, []);
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@Conexa:token');
     const user = localStorage.getItem('@Conexa:user');
@@ -72,7 +90,15 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{
+        user: data.user,
+        signIn,
+        signOut,
+        consultations,
+        setConsultations,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

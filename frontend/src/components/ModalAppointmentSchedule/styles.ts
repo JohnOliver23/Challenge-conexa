@@ -29,6 +29,18 @@ export const ContainerModal = styled(Modal)`
       margin-bottom: 2rem;
     }
   }
+  .col-md-6 {
+    height: 100px;
+  }
+  .MuiInput-underline:after {
+    border-bottom: 2px solid var(--color-blue-dark);
+  }
+  .MuiInput-underline:hover:not(.Mui-disabled):before {
+    border-bottom: 2px solid var(--color-blue-dark);
+  }
+  .MuiFormLabel-root.Mui-focused {
+    color: var(--color-blue-dark);
+  }
 `;
 export const ModalHeader = styled(Modal.Header)`
   & button:focus {

@@ -12,7 +12,7 @@ export default createGlobalStyle`
         --color-white: #FFFFFB;
         --color-gray-light: #DAD2D0;
         --color-gray-dark: #575453;
-        --color-red: #c53030;
+        --color-red: #f44336
     }
 * {
   margin: 0;
@@ -26,7 +26,7 @@ body {
   -webkit-font-smoothing: antialiased;
   margin-top: 4rem;
 }
-body, input, button {
+body, input, button, p {
   font-family: 'Nunito', serif;
   font-size: 14px;
 }

@@ -17,3 +17,8 @@ export interface Consultation {
   patientId: number;
   date: string;
 }
+
+export interface ConsultationPost {
+  patientId: number;
+  date: Date;
+}

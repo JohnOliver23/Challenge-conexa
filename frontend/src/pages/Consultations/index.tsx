@@ -1,10 +1,8 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { getConsultations } from '../../services/api';
 
-import { Container, Content, ListPatients, Footer } from './styles';
-
-import { genericReducer } from '../../util/reducer';
+import { Container, Content, ListPatients } from './styles';
 
 import { Consultation } from '../../util/types';
 
@@ -13,31 +11,33 @@ import format from 'date-fns/format';
 import Button from '../../components/Button';
 
 import { ptBR } from 'date-fns/locale';
+
 import { toast } from 'react-toastify';
-import { BtnLogout } from '../../components/Header/styles';
-import ModalAppointmentSchedule from '../../components/ModalAppointmentSchedule';
+
+import { useAuth } from '../../hooks/auth';
+
+import Footer from '../../components/Footer';
 
 const Consultations: React.FC = () => {
-  const [consultations, setConsultations] = useReducer(genericReducer, []);
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const { consultations, setConsultations } = useAuth();
 
   useEffect(() => {
-    getConsultations().then((data: Consultation) => {
-      setConsultations({ type: 'UPDATE-ALL', payload: data });
-    });
+    getConsultations()
+      .then((data: Consultation) => {
+        setConsultations({ type: 'UPDATE-ALL', payload: data });
+      })
+      .catch(err => {
+        console.log(err);
+        toast.error('Erro ao carregar dados, Por favor, recarregue a página');
+      });
+    // eslint-disable-next-line
   }, []);
 
   return (
     <>
-      {showModal && (
-        <ModalAppointmentSchedule
-          show={showModal}
-          setModalShow={setShowModal}
-        />
-      )}
       <Container>
         <h1>Consultas</h1>
-        {consultations.length > 0 ? (
+        {consultations && consultations.length > 0 ? (
           <Content>
             <section>
               <h3>{consultations.length} consultas agendadas</h3>
@@ -53,7 +53,7 @@ const Consultations: React.FC = () => {
                         <h4>
                           {format(
                             new Date(consultation.date),
-                            " dd/MM/yy' às ' HH:mm'",
+                            " dd/MM/yyyy' às ' HH:mm'",
                             {
                               locale: ptBR,
                             },
@@ -81,12 +81,7 @@ const Consultations: React.FC = () => {
           ''
         )}
       </Container>
-      <Footer>
-        <div>
-          <BtnLogout>Ajuda</BtnLogout>
-          <Button onClick={() => setShowModal(true)}>Agendar consulta</Button>
-        </div>
-      </Footer>
+      <Footer />
     </>
   );
 };
